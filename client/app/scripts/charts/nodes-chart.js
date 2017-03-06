@@ -6,7 +6,7 @@ import ZoomContainer from '../components/zoom-container';
 import ResourceView from './resource-view';
 import NodesChartElements from './nodes-chart-elements';
 import { clickBackground } from '../actions/app-actions';
-import { isResourceViewModeSelector } from '../selectors/topology';
+import { isGraphViewModeSelector } from '../selectors/topology';
 
 
 class NodesChart extends React.Component {
@@ -17,7 +17,7 @@ class NodesChart extends React.Component {
   }
 
   render() {
-    const { isResourceViewMode, isEmpty, selectedNodeId } = this.props;
+    const { isGraphViewMode, isEmpty, selectedNodeId } = this.props;
     const svgClassNames = isEmpty ? 'hide' : '';
 
     return (
@@ -30,8 +30,8 @@ class NodesChart extends React.Component {
           <g transform="translate(24,24) scale(0.25)">
             <Logo />
           </g>
-          <ZoomContainer disabled={selectedNodeId}>
-            {isResourceViewMode ? <ResourceView /> : <NodesChartElements />}
+          <ZoomContainer horizontal vertical={isGraphViewMode} disabled={selectedNodeId}>
+            {isGraphViewMode ? <NodesChartElements /> : <ResourceView />}
           </ZoomContainer>
         </svg>
       </div>
@@ -48,7 +48,7 @@ class NodesChart extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isResourceViewMode: isResourceViewModeSelector(state),
+    isGraphViewMode: isGraphViewModeSelector(state),
     selectedNodeId: state.get('selectedNodeId'),
   };
 }

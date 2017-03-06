@@ -4,7 +4,7 @@ import { Map as makeMap } from 'immutable';
 import timely from 'timely';
 
 import { initEdgesFromNodes, collapseMultiEdges } from '../../utils/layouter-utils';
-import { viewportWidthSelector, viewportHeightSelector } from './viewport';
+import { viewportWidthSelector, viewportHeightSelector } from '../viewport';
 import { activeTopologyOptionsSelector } from '../topology';
 import { shownNodesSelector } from '../node-filters';
 import { doLayout } from '../../charts/nodes-layout';
