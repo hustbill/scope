@@ -1189,7 +1189,7 @@
   }
 }
 
-.topology-option, .metric-selector, .network-selector, .grid-mode-selector {
+.topology-option, .metric-selector, .network-selector, .view-mode-selector {
   color: $text-secondary-color;
   margin: 6px 0;
 
@@ -1235,8 +1235,7 @@
   }
 }
 
-.grid-mode-selector {
-
+.view-mode-selector {
   margin-top: 8px;
   margin-left: 8px;
   min-width: 161px;
@@ -1249,7 +1248,7 @@
 
   &:first-child,
   &:last-child {
-    .grid-mode-selector-action {
+    .view-mode-selector-action {
       border-radius: 0;
     }
   }
@@ -1276,7 +1275,7 @@
   }
 }
 
-.grid-mode-selector .fa {
+.view-mode-selector .fa {
   margin-right: 4px;
   margin-left: 0;
   color: $text-secondary-color;
