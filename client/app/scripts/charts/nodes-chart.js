@@ -2,11 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Logo from '../components/logo';
-import ResourceView from './resource-view';
 import NodesChartElements from './nodes-chart-elements';
 import CachableZoomWrapper from '../components/cachable-zoom-wrapper';
 import { clickBackground } from '../actions/app-actions';
-import { isGraphViewModeSelector } from '../selectors/topology';
 
 
 class NodesChart extends React.Component {
@@ -17,7 +15,8 @@ class NodesChart extends React.Component {
   }
 
   render() {
-    const { isGraphViewMode, isEmpty, selectedNodeId } = this.props;
+    // TODO: What to do with empty?
+    const { isEmpty, selectedNodeId } = this.props;
     const svgClassNames = isEmpty ? 'hide' : '';
 
     return (
@@ -27,11 +26,9 @@ class NodesChart extends React.Component {
           id="nodes-chart-canvas"
           className={svgClassNames}
           onClick={this.handleMouseClick}>
-          <g transform="translate(24,24) scale(0.25)">
-            <Logo />
-          </g>
-          <CachableZoomWrapper fixVertical={!isGraphViewMode} disabled={selectedNodeId}>
-            {isGraphViewMode ? <NodesChartElements /> : <ResourceView />}
+          <Logo transform="translate(24,24) scale(0.25)" />
+          <CachableZoomWrapper disabled={selectedNodeId}>
+            <NodesChartElements />
           </CachableZoomWrapper>
         </svg>
       </div>
@@ -48,7 +45,6 @@ class NodesChart extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isGraphViewMode: isGraphViewModeSelector(state),
     selectedNodeId: state.get('selectedNodeId'),
   };
 }
